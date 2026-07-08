@@ -12,3 +12,12 @@ C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\UI.pdb
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\UI.genruntimeconfig.cache
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\ref\UI.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Application.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Core.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Repository.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Application.pdb
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Core.pdb
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\bin\Debug\net10.0\Repository.pdb
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\UI.csproj.AssemblyReference.cache
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\UI.sourcelink.json
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\UI\obj\Debug\net10.0\UI.csproj.Up2Date

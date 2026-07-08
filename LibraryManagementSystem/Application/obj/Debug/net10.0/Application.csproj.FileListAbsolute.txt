@@ -9,3 +9,10 @@ C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\o
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\refint\Application.dll
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\Application.pdb
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\ref\Application.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\bin\Debug\net10.0\Core.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\bin\Debug\net10.0\Repository.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\bin\Debug\net10.0\Core.pdb
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\bin\Debug\net10.0\Repository.pdb
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\Application.csproj.AssemblyReference.cache
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\Application.sourcelink.json
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Application\obj\Debug\net10.0\Applicat.44B5EDA2.Up2Date

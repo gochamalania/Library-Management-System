@@ -9,3 +9,4 @@ C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Core\obj\Debu
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Core\obj\Debug\net10.0\refint\Core.dll
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Core\obj\Debug\net10.0\Core.pdb
 C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\gocha\OneDrive\Desktop\Project-C#\LibraryManagementSystem\Core\obj\Debug\net10.0\Core.sourcelink.json

@@ -1,6 +1,16 @@
-﻿namespace Core.Models;
+﻿using Core.Enums;
 
-public class AdminUser
+namespace Core.Models;
+
+public class AdminUser : User
 {
+    public AdminUser(string id, string username, string password) : base(id, username, password, Role.Admin) 
+    {
+        
+    }
     
+    public override void DisplayMenu()
+    {
+        // Implementation will be done in the UI layer
+    }
 }
