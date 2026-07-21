@@ -1,2 +1,5 @@
-1|The Hobbit|J.R.R. Tolkien|978-04515|5|4
+1|The Hobbit|J.R.R. Tolkien|978-04515|5|5
 2|1984|George Orwell|997-1234|2|2
+3|the book thief|Markus Zusak|11230-424|4|4
+4|data tutashxia|chabua amirejibi|123-44509|1|1
+5|brave new world|aldous huxley|998-123|4|4

@@ -31,5 +31,6 @@ class Program
         // 4. UI (launching the main menu)
         LoginMenu loginMenu = new LoginMenu(authService, libraryService);
         loginMenu.Show();
+        
     }
 }

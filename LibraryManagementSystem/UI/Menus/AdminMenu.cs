@@ -121,7 +121,7 @@ public class AdminMenu
 
         try
         {
-            _libraryService.ReturnBook(bookId);
+            _libraryService.RemoveBook(bookId);
             ConsoleHelper.WriteSuccess("\nThe book was successfully deleted!");
         }
         catch (Exception ex)
