@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Core.Models;
+using UI.Helpers;
 
 namespace UI.Menus;
 
@@ -19,6 +20,11 @@ public class ClientMenu
         while (true)
         {
             Console.Clear();
+            
+            // blue title
+            ConsoleHelper.WriteClientHeader($"Client menu | User: {_authService.CurrentUser.Username}");
+            
+            Console.Clear();
             Console.WriteLine($"====================================");
             Console.WriteLine($"Reader Menu | User: {_authService.CurrentUser.Username}");
             Console.WriteLine($"====================================");
@@ -31,7 +37,9 @@ public class ClientMenu
             Console.WriteLine("6. Check fine");
             Console.WriteLine("7. Logout");
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nChoice option (1-7): ");
+            Console.ResetColor();
             
             string choice = Console.ReadLine();
 
@@ -68,20 +76,10 @@ public class ClientMenu
     private void ShowAllBooks()
     {
         Console.Clear();
-        Console.WriteLine("--- Books in the library ---");
+        ConsoleHelper.WriteClientHeader("Books in the library");
+        
         var books = _libraryService.GetAllBooks();
-
-        if (books.Count == 0)
-        {
-            Console.WriteLine("There are no books in the library yet.");
-        }
-        else
-        {
-            foreach (var b in books)
-            {
-                Console.WriteLine($"ID: {b.Id} | Title: {b.Title} | Author: {b.Author} | ISBN: {b.ISBN} | Available: {b.AvailableCopies}/{b.TotalCopies}");
-            }
-        }
+        TablePrinter.PrintBooks(books);
 
         Console.WriteLine("\nPress any key to continue...");
         Console.ReadKey();
@@ -90,24 +88,23 @@ public class ClientMenu
     private void SearchBooks()
     {
         Console.Clear();
-        Console.WriteLine("--- Search Books (title/author/ISBN):  ---");
-        string query = Console.ReadLine();
-        
-        var results = _libraryService.SearchBooks(query);
-        Console.WriteLine($"Found {results.Count} books:");
+        ConsoleHelper.WriteClientHeader("Search books");
 
-        foreach (var b in results)
-        {
-            Console.WriteLine($"ID: {b.Id} | Title: {b.Title} | Author: {b.Author} | ISBN: {b.ISBN} | Available: {b.AvailableCopies}/{b.TotalCopies}");
-            
-        }
-        Console.WriteLine("\nPress any key...");
+        Console.Write("Search (title / author / ISBN)");
+        string keyword = Console.ReadLine();
+        
+        var books = _libraryService.SearchBooks(keyword);
+        TablePrinter.PrintBooks(books);
+        
+        Console.WriteLine("\nPress any key to continue...");
         Console.ReadKey();
     }
 
     public void BorrowBook()
     {
         Console.Clear();
+        ConsoleHelper.WriteClientHeader("Borrow book");
+        
         Console.Write("Enter book ID: ");
         string bookId = Console.ReadLine();
 
@@ -148,7 +145,7 @@ public class ClientMenu
     private void ShowMyBorrows()
     {
         Console.Clear();
-        Console.WriteLine("--- My borrowed books ---");
+        ConsoleHelper.WriteClientHeader("My borrowed books");
         var borrows = _libraryService.GetUsersBorrows(_authService.CurrentUser.Id);
 
         if (borrows.Count == 0)
@@ -157,6 +154,10 @@ public class ClientMenu
         }
         else
         {
+            string line = new string('-', 75);
+            Console.WriteLine(line);
+            Console.WriteLine($"| {"Book ID", -10} | {"Borrow date", -20} | {"Deadline", -20} | {"Status", -12} |");
+            
             foreach (var r in borrows)
             {
                 string status = r.IsReturned ? "Returned" : "Borrowed";
@@ -171,6 +172,8 @@ public class ClientMenu
     private void CheckFine()
     {
         Console.Clear();
+        ConsoleHelper.WriteClientHeader("Check fine");
+        
         if (_authService.CurrentUser is ClientUser client)
         {
             Console.WriteLine($"Your current fines: {client.Fines:F2} $");

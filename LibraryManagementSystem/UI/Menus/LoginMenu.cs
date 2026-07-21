@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Core.Enums;
+using UI.Helpers;
 
 namespace UI.Menus;
 
@@ -94,7 +95,8 @@ public class LoginMenu
         string username = Console.ReadLine();
         
         Console.Write("Password: ");
-        string password = Console.ReadLine();
+        // string password = Console.ReadLine();
+        string password = PasswordHelper.ReadPassword();
         
         Console.WriteLine("\nChoose Role: ");
         Console.WriteLine("1. Client");

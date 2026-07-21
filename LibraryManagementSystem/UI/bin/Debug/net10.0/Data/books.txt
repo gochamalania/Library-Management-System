@@ -1,0 +1,2 @@
+1|The Hobbit|J.R.R. Tolkien|978-04515|5|4
+2|1984|George Orwell|997-1234|2|2
