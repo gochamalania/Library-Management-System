@@ -4,32 +4,33 @@ using Repository.Interfaces;
 
 namespace Repository.Implementations;
 
+
 public class TxtUserRepository : IUserRepository
 {
     private readonly string _filePath;
-    
-    // pass the file path from the constructor
+
     public TxtUserRepository(string filePath)
     {
         _filePath = filePath;
-        
-        // If the folder or file does not exist, we automatically create it.
+
         string directory = Path.GetDirectoryName(_filePath);
         if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
         }
-
         if (!File.Exists(_filePath))
         {
             File.Create(_filePath).Close();
         }
-        
     }
 
     public List<User> GetAllUsers()
     {
         var users = new List<User>();
+
+        if (!File.Exists(_filePath))
+            return users;
+
         var lines = File.ReadAllLines(_filePath);
 
         foreach (var line in lines)
@@ -38,44 +39,57 @@ public class TxtUserRepository : IUserRepository
 
             var parts = line.Split('|');
             if (parts.Length < 4) continue;
-            
-            string id = parts[0];
-            string username = parts[1];
-            string password = parts[2];
-            Role role = Enum.Parse<Role>(parts[3]);
+
+            string id = parts[0].Trim();
+            string username = parts[1].Trim();
+            string password = parts[2].Trim();
+            string roleStr = parts[3].Trim();
+
+            // უსაფრთხო პარსინგი - თუ როლი ვერ იცნო, არ დაქრაშოს
+            if (!Enum.TryParse<Role>(roleStr, true, out var role))
+            {
+                continue;
+            }
 
             if (role == Role.Admin)
             {
                 users.Add(new AdminUser(id, username, password));
-            } 
-            else if(role == Role.Client)
+            }
+            else if (role == Role.Client)
             {
-                decimal fines = parts.Length > 4 ? decimal.Parse(parts[4]) : 0;
+                decimal fines = 0;
+                if (parts.Length > 4)
+                {
+                    decimal.TryParse(parts[4].Trim(), out fines);
+                }
                 users.Add(new ClientUser(id, username, password, fines));
             }
         }
+
         return users;
     }
 
     public User GetUserByUsername(string username)
     {
-        return GetAllUsers().FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+        if (string.IsNullOrWhiteSpace(username)) return null;
+
+        string cleanUsername = username.Trim();
+        return GetAllUsers().FirstOrDefault(u => u.Username.Equals(cleanUsername, StringComparison.OrdinalIgnoreCase));
     }
 
     public void AddUser(User user)
     {
         var users = GetAllUsers();
-        
-        // Check if such user already exists
-        if (users.Any(u => u.Username.Equals(user.Username, StringComparison.OrdinalIgnoreCase)))
+
+        if (users.Any(u => u.Username.Equals(user.Username.Trim(), StringComparison.OrdinalIgnoreCase)))
         {
-            throw new Exception("User already exists");
+            throw new Exception("მომხმარებელი ამ სახელით უკვე არსებობს!");
         }
-        
+
         users.Add(user);
         SaveAll(users);
     }
-    
+
     public void UpdateUser(User user)
     {
         var users = GetAllUsers();
@@ -94,15 +108,16 @@ public class TxtUserRepository : IUserRepository
 
         foreach (var user in users)
         {
-            string line = $"{user.Id} {user.Username} {user.Password} {user.UserRole}";
-            
-            // If it is a client, we also add the fine at the end.
+            string line = $"{user.Id}|{user.Username.Trim()}|{user.Password.Trim()}|{user.UserRole}";
+
             if (user is ClientUser client)
             {
                 line += $"|{client.Fines}";
             }
+
             lines.Add(line);
         }
+
         File.WriteAllLines(_filePath, lines);
     }
 }

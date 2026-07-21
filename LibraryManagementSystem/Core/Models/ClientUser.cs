@@ -7,7 +7,7 @@ public class ClientUser : User
     public decimal Fines { get; private set; }
     
     public ClientUser(
-        string id, string username, string password, decimal fines
+        string id, string username, string password, decimal fines = 0
         ) : base(id, username, password, Role.Client)
     {
         Fines = fines;
