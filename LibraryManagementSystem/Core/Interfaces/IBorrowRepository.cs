@@ -1,6 +1,6 @@
 ﻿using Core.Models;
 
-namespace Repository.Interfaces;
+namespace Core.Interfaces;
 
 public interface IBorrowRepository
 {

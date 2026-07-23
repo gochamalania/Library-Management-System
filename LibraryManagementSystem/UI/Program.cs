@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Services;
 using Repository.Implementations;
-using Repository.Interfaces;
+using Core.Interfaces;
 using UI.Menus;
 using System;
 using System.IO;
@@ -19,10 +19,15 @@ class Program
         string booksPath = Path.Combine(dataFolder, "books.txt");
         string borrowsPath = Path.Combine(dataFolder, "borrows.txt");
         
-        // 2. Repositories (memory/file layer)
-        IUserRepository userRepository = new TxtUserRepository(usersPath);
-        IBookRepository bookRepository = new TxtBookRepository(booksPath);
-        IBorrowRepository borrowRepository = new TxtBorrowRepository(borrowsPath);
+        // 2.1 Repositories by txt (memory/file layer)
+        // IUserRepository userRepository = new TxtUserRepository(usersPath);
+        // IBookRepository bookRepository = new TxtBookRepository(booksPath);
+        // IBorrowRepository borrowRepository = new TxtBorrowRepository(borrowsPath);
+        
+        // 2.2 Repositories by json (memory/file layer)
+        IUserRepository userRepository = new JsonUserRepository("users.json");
+        IBookRepository bookRepository = new JsonBookRepository("books.json");
+        IBorrowRepository borrowRepository = new JsonBorrowRepository("borrows.json");
         
         // 3. Services (business logic layer)
         IAuthService authService = new AuthService(userRepository);

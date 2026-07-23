@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
 using Core.Models;
-using Repository.Interfaces;
+using Core.Interfaces;
 
 namespace Application.Services;
 

@@ -1,6 +1,6 @@
 ﻿using Core.Enums;
 using Core.Models;
-using Repository.Interfaces;
+using Core.Interfaces;
 
 namespace Repository.Implementations;
 

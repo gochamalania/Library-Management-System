@@ -1,59 +1,55 @@
-﻿using Core.Models;
+﻿using System.Text.Json;
 using Core.Interfaces;
+using Core.Models;
 
 namespace Repository.Implementations;
 
-public class TxtBookRepository : IBookRepository
+public class JsonBookRepository : IBookRepository
 {
     private readonly string _filePath;
+    private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions 
+    { 
+        WriteIndented = true, //saves nicely formatted JSON
+        PropertyNameCaseInsensitive = true
+    };
     
-    public TxtBookRepository(string filePath)
+    public JsonBookRepository(string filePath)
     {
         _filePath = filePath;
         
-        string directory = Path.GetDirectoryName(_filePath);
+        string? directory = Path.GetDirectoryName(_filePath);
         if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
         }
-
-        if (!File.Exists(_filePath))
+        
+        // If the file does not exist or is empty, an empty JSON array "[]" is created
+        if (!File.Exists(_filePath) || new FileInfo(_filePath).Length == 0)
         {
-            File.Create(_filePath).Close();
+            File.WriteAllText(_filePath, "[]");
         }
     }
 
     public List<Book> GetAllBooks()
     {
-        var books = new List<Book>();
-        
-        if(!File.Exists(_filePath))
-            return books;
+        if (!File.Exists(_filePath))
+            return new List<Book>();
 
-        var lines = File.ReadAllLines(_filePath);
+        var json = File.ReadAllText(_filePath);
+        if (string.IsNullOrWhiteSpace(json))
+            return new List<Book>();
 
-        foreach (var line in lines)
+        try
         {
-            if(string.IsNullOrWhiteSpace(line)) continue;
-
-            var parts = line.Split('|');
-            if(parts.Length < 6 ) continue;
-
-            string id = parts[0].Trim();
-            string title = parts[1].Trim();
-            string author = parts[2].Trim();
-            string isbn = parts[3].Trim();
-            
-            int.TryParse(parts[4].Trim(), out int totalCopies);
-            int.TryParse(parts[5].Trim(), out int availableCopies);
-            
-            books.Add(new Book(id, title, author, isbn, totalCopies, availableCopies));
+            return JsonSerializer.Deserialize<List<Book>>(json, _jsonOptions) ?? new List<Book>();
         }
-        
-        return books;
+        catch
+        {
+            return new List<Book>();
+        }
     }
 
-    public Book GetBookById(string id)
+    public Book? GetBookById(string id)
     {
         if (string.IsNullOrWhiteSpace(id)) return null;
         return GetAllBooks().FirstOrDefault(b => b.Id.Equals(id.Trim(), StringComparison.OrdinalIgnoreCase));
@@ -82,7 +78,7 @@ public class TxtBookRepository : IBookRepository
             SaveAll(books);
         }
     }
-
+    
     public void DeleteBook(string id)
     {
         var books = GetAllBooks();
@@ -94,16 +90,10 @@ public class TxtBookRepository : IBookRepository
             SaveAll(books);
         }
     }
-    
+
     private void SaveAll(List<Book> books)
     {
-        var lines = new List<string>();
-
-        foreach (var book in books)
-        {
-            lines.Add($"{book.Id}|{book.Title.Trim()}|{book.Author.Trim()}|{book.ISBN.Trim()}|{book.TotalCopies}|{book.AvailableCopies}");
-        }
-        
-        File.WriteAllLines(_filePath, lines);
+        var json = JsonSerializer.Serialize(books, _jsonOptions);
+        File.WriteAllText(_filePath, json);
     }
 }

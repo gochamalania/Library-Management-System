@@ -1,7 +1,7 @@
 ﻿using Core.Models;
 // using System.Collections.Generic;
 
-namespace Repository.Interfaces;
+namespace Core.Interfaces;
 
 public interface IUserRepository
 {

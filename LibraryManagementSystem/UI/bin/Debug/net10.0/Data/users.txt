@@ -1,4 +1,4 @@
 1001|admin|admin12345|Admin
-1002|client|client123|Client|0
+1002|client|client123|Client
 1003|Gocha|pass123|Admin
 1004|admin2|admin-123|Admin
