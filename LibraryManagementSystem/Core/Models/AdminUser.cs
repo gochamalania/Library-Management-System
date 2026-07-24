@@ -4,7 +4,10 @@ namespace Core.Models;
 
 public class AdminUser : User
 {
-    public AdminUser(string id, string username, string password) : base(id, username, password, Role.Admin) 
+    public AdminUser() { }
+    
+    public AdminUser(string id, string username, string password, string email, Role role = Role.Admin) 
+        : base(id, username, password, email, role) 
     {
         
     }

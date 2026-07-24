@@ -19,18 +19,16 @@ class Program
         string booksPath = Path.Combine(dataFolder, "books.txt");
         string borrowsPath = Path.Combine(dataFolder, "borrows.txt");
         
-        // 2.1 Repositories by txt (memory/file layer)
-        // IUserRepository userRepository = new TxtUserRepository(usersPath);
-        // IBookRepository bookRepository = new TxtBookRepository(booksPath);
-        // IBorrowRepository borrowRepository = new TxtBorrowRepository(borrowsPath);
         
-        // 2.2 Repositories by json (memory/file layer)
+        // 2 Repositories by json (memory/file layer)
         IUserRepository userRepository = new JsonUserRepository("users.json");
         IBookRepository bookRepository = new JsonBookRepository("books.json");
         IBorrowRepository borrowRepository = new JsonBorrowRepository("borrows.json");
+        ILoggerService logger = new JsonLoggerService("logs.json");
         
         // 3. Services (business logic layer)
-        IAuthService authService = new AuthService(userRepository);
+        ILoggerService userLogger = new JsonLoggerService("users.json");
+        IAuthService authService = new AuthService(userRepository, logger);
         ILibraryService libraryService = new LibraryService(bookRepository, borrowRepository, userRepository);
         
         // 4. UI (launching the main menu)

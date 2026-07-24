@@ -5,14 +5,20 @@ namespace Application.Interfaces;
 
 public interface IAuthService
 {
-    User CurrentUser { get; }
+    User? CurrentUser { get; }
     
     //registration
-    bool Register(string username, string password, Role role);
+    void RegisterAdmin(string username, string password);
+    bool Register(string username, string password, string email, Role role);
     
-    //login
-    bool Login(string username, string password);
+    //login identifier = username or email
+    bool Login(string identifier, string password);
+    bool VerifyEmail(string email, string code);
+    string ResendVerificationCode(string email);
     
     void Logout();
-    
+
+    List<User> GetPendingAdmins();
+    void ApproveAdmin(string userId);
+
 }

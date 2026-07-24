@@ -15,4 +15,11 @@ public interface ILibraryService
     void RemoveBook(string bookId);
     List<BorrowRecord> GetUsersBorrows(string userId);
     List<BorrowRecord> GetAllActiveBorrows();
+    
+    
+    decimal GetTotalUserFine(string userId);
+    List<ClientUser> GetAllClients();
+    List<User> GetAllUsers();
+    void DeleteUser(string userId);
+    void ClearUserFine(string userId);
 }

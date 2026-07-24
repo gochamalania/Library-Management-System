@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "Id": "1",
+    "Title": "Give to Grow",
+    "Author": "Mo Bunnell",
+    "ISBN": "145-332",
+    "TotalCopies": 4,
+    "AvailableCopies": 4
+  },
+  {
+    "Id": "2",
+    "Title": "Recruiting Top Sales Talent",
+    "Author": "Henry Glickel",
+    "ISBN": "3131",
+    "TotalCopies": 5,
+    "AvailableCopies": 5
+  },
+  {
+    "Id": "3",
+    "Title": "A mind for sales",
+    "Author": "Mark Hunter",
+    "ISBN": "1234-532",
+    "TotalCopies": 6,
+    "AvailableCopies": 6
+  },
+  {
+    "Id": "4",
+    "Title": "test1",
+    "Author": "authorTest",
+    "ISBN": "111222",
+    "TotalCopies": 4,
+    "AvailableCopies": 3
+  },
+  {
+    "Id": "5",
+    "Title": "added by",
+    "Author": "super admin",
+    "ISBN": "234-2333",
+    "TotalCopies": 2,
+    "AvailableCopies": 2
+  }
+]

@@ -134,4 +134,64 @@ public class LibraryService : ILibraryService
     {
         return _borrowRepository.GetAllBorrows().Where(b => !b.IsReturned).ToList();
     }
+    
+    //UserFine
+    public decimal GetTotalUserFine(string userId)
+    {
+        var user = _userRepository.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+        if (user is not ClientUser client) return 0;
+
+        decimal totalFine = client.Fines;
+        
+        var activeBorrows = _borrowRepository.GetAllBorrows()
+            .Where(b => b.UserId == userId && !b.IsReturned)
+            .ToList();
+
+        foreach (var record in activeBorrows)
+        {
+            if (DateTime.Now > record.DueDate)
+            {
+                int lateDays = (DateTime.Now - record.DueDate).Days;
+                if (lateDays > 0)
+                {
+                    totalFine += lateDays * 1m; // 1$ თითო დაგვიანებულ დღეზე
+                }
+            }
+        }
+
+        return totalFine;
+    }
+    
+    //all clients
+    public List<ClientUser> GetAllClients()
+    {
+        return _userRepository.GetAllUsers().OfType<ClientUser>().ToList();
+    }
+
+    public List<User> GetAllUsers()
+    {
+        return _userRepository.GetAllUsers();
+    }
+
+    
+    public void DeleteUser(string userId)
+    {
+        var user = _userRepository.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+        if (user == null)
+            throw new Exception("User not found");
+
+        _userRepository.DeleteUser(user);
+    }
+    
+    public void ClearUserFine(string userId)
+    {
+        var user = _userRepository.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+        if (user is ClientUser client)
+        {
+            client.PayFine(client.Fines);
+            _userRepository.UpdateUser(client);
+        }
+    }
+
+    
 }

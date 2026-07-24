@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "Id": "1001",
+    "Username": "superadmin",
+    "Password": "SuperAdmin123!",
+    "Email": "superadmin@library.ge",
+    "UserRole": 2,
+    "IsEmailVerified": true,
+    "VerificationCode": null,
+    "Fines": 0
+  },
+  {
+    "Id": "1002",
+    "Username": "clientUser",
+    "Password": "client-123",
+    "Email": "gochamalania0@gmail.com",
+    "UserRole": 0,
+    "IsEmailVerified": true,
+    "VerificationCode": null,
+    "Fines": 0
+  },
+  {
+    "Id": "1004",
+    "Username": "client",
+    "Password": "client-123",
+    "Email": "client@library.ge",
+    "UserRole": 0,
+    "IsEmailVerified": true,
+    "VerificationCode": null,
+    "Fines": 0
+  },
+  {
+    "Id": "1005",
+    "Username": "admin",
+    "Password": "admin123",
+    "Email": "admin@admin.library.ge",
+    "UserRole": 1,
+    "IsEmailVerified": true,
+    "VerificationCode": null,
+    "Fines": 0
+  }
+]

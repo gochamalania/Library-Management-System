@@ -22,7 +22,7 @@ public class ClientMenu
             Console.Clear();
             
             // blue title
-            ConsoleHelper.WriteClientHeader($"Client menu | User: {_authService.CurrentUser.Username}");
+            ConsoleHelper.WriteClientHeader($"Client menu | User: {_authService.CurrentUser!.Username}");
             
             Console.Clear();
             Console.WriteLine($"====================================");
@@ -91,7 +91,7 @@ public class ClientMenu
         ConsoleHelper.WriteClientHeader("Search books");
 
         Console.Write("Search (title / author / ISBN)");
-        string keyword = Console.ReadLine();
+        string keyword = Console.ReadLine() ?? "";
         
         var books = _libraryService.SearchBooks(keyword);
         TablePrinter.PrintBooks(books);
@@ -106,7 +106,7 @@ public class ClientMenu
         ConsoleHelper.WriteClientHeader("Borrow book");
         
         Console.Write("Enter book ID: ");
-        string bookId = Console.ReadLine();
+        string bookId = Console.ReadLine() ?? "";
 
         try
         {
@@ -126,7 +126,7 @@ public class ClientMenu
         Console.Clear();
         ShowMyBorrows();
         Console.Write("Enter borrowed book ID, which you want to return: ");
-        string borrowId = Console.ReadLine();
+        string borrowId = Console.ReadLine() ?? "";
 
         try
         {
@@ -174,10 +174,21 @@ public class ClientMenu
         Console.Clear();
         ConsoleHelper.WriteClientHeader("Check fine");
         
-        if (_authService.CurrentUser is ClientUser client)
+        decimal totalFine = _libraryService.GetTotalUserFine(_authService.CurrentUser!.Id);
+
+        if (totalFine > 0)
         {
-            Console.WriteLine($"Your current fines: {client.Fines:F2} $");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"⚠️ You have an active fine: ${totalFine:F2}");
+            Console.ResetColor();
         }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("✅ You have no active fines! All books are returned on time.");
+            Console.ResetColor();
+        }
+
         Console.WriteLine("\nPress any key...");
         Console.ReadKey();
     }

@@ -1,0 +1,122 @@
+[
+  {
+    "Id": "7140c6fb-3516-440d-b651-7098c0ad4af8",
+    "Timestamp": "2026-07-23T23:11:25.0691196+04:00",
+    "Level": 1,
+    "Message": "Unsuccessful authorization attempt on user: \u0027gocha\u0027"
+  },
+  {
+    "Id": "a767f2fd-b284-481a-96be-b781dc5bb58b",
+    "Timestamp": "2026-07-24T03:22:38.8891264+04:00",
+    "Level": 0,
+    "Message": "User \u0027superadmin\u0027 registered successfully"
+  },
+  {
+    "Id": "f33bfc78-4b2a-458e-be0c-17001f836903",
+    "Timestamp": "2026-07-24T03:23:07.9654906+04:00",
+    "Level": 0,
+    "Message": " new user registered successfully: \u0027clientUser\u0027 (Email: gochamalania0@gmail.com), verification code: 789070"
+  },
+  {
+    "Id": "b95f97d0-0534-4565-90a0-439947f1476f",
+    "Timestamp": "2026-07-24T03:23:57.8539282+04:00",
+    "Level": 0,
+    "Message": "Email \u0027gochamalania0@gmail.com\u0027 Successfully verified."
+  },
+  {
+    "Id": "f57b782d-e71f-4d24-9801-88830353cd4f",
+    "Timestamp": "2026-07-24T03:28:26.8203094+04:00",
+    "Level": 0,
+    "Message": " new user registered successfully: \u0027admin\u0027 (Email: admin@library.ge), verification code: 700574"
+  },
+  {
+    "Id": "b4004e32-a3e7-4229-8065-257ccd410916",
+    "Timestamp": "2026-07-24T03:28:34.64075+04:00",
+    "Level": 0,
+    "Message": "Email \u0027admin@library.ge\u0027 Successfully verified."
+  },
+  {
+    "Id": "48cd65b9-1d36-4b12-8911-580b7c659840",
+    "Timestamp": "2026-07-24T03:28:49.7896548+04:00",
+    "Level": 1,
+    "Message": "user \u0027admin\u0027 (admin@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "ca835173-229a-480a-8d90-46f0b84d1093",
+    "Timestamp": "2026-07-24T03:31:22.6129262+04:00",
+    "Level": 0,
+    "Message": "User \u0027admin\u0027 logged out."
+  },
+  {
+    "Id": "1b9b3b58-86ea-4a91-bd8f-63f5a0dee500",
+    "Timestamp": "2026-07-24T03:31:42.481919+04:00",
+    "Level": 0,
+    "Message": " new user registered successfully: \u0027client\u0027 (Email: client@library.ge), verification code: 223158"
+  },
+  {
+    "Id": "9ec2a6ab-b5db-4143-88d4-831c84092679",
+    "Timestamp": "2026-07-24T03:31:48.2790035+04:00",
+    "Level": 0,
+    "Message": "Email \u0027client@library.ge\u0027 Successfully verified."
+  },
+  {
+    "Id": "f0c22fa6-59a4-43ae-9bba-80f723269bd6",
+    "Timestamp": "2026-07-24T03:32:11.3662984+04:00",
+    "Level": 1,
+    "Message": "user \u0027client\u0027 (client@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "e9a6c9fa-dcfc-4413-8ca2-3ef573e531c4",
+    "Timestamp": "2026-07-24T03:50:54.2155927+04:00",
+    "Level": 1,
+    "Message": "user \u0027client\u0027 (client@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "4613286d-2756-43fa-b62b-9e8852ba9041",
+    "Timestamp": "2026-07-24T03:53:41.8345179+04:00",
+    "Level": 0,
+    "Message": "User \u0027client\u0027 logged out."
+  },
+  {
+    "Id": "0b0f9f8a-5345-4741-bb48-0a697f5286a5",
+    "Timestamp": "2026-07-24T04:20:25.6231679+04:00",
+    "Level": 1,
+    "Message": "user \u0027admin\u0027 (admin@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "08969936-61cf-4510-aa0a-c93549919976",
+    "Timestamp": "2026-07-24T04:34:00.7373702+04:00",
+    "Level": 0,
+    "Message": "User \u0027admin\u0027 logged out."
+  },
+  {
+    "Id": "dd389f82-eb82-4bf3-9082-26e13b9e8ad8",
+    "Timestamp": "2026-07-24T05:18:12.0043813+04:00",
+    "Level": 0,
+    "Message": "User \u0027superadmin\u0027 (superadmin@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "9c096baf-6f00-43af-b376-b412be646197",
+    "Timestamp": "2026-07-24T05:27:04.7536795+04:00",
+    "Level": 1,
+    "Message": "Unsuccessful authorization attempt: \u0027superadmin\u0027"
+  },
+  {
+    "Id": "3480b1f9-76c9-413d-97a6-fc7e73f1d903",
+    "Timestamp": "2026-07-24T05:27:19.6075685+04:00",
+    "Level": 0,
+    "Message": "User \u0027superadmin\u0027 (superadmin@library.ge) Logged in successfully"
+  },
+  {
+    "Id": "13d92ebd-b369-44f8-8d43-8e0236735e22",
+    "Timestamp": "2026-07-24T05:29:18.998531+04:00",
+    "Level": 0,
+    "Message": "SuperAdmin directly created new Admin: \u0027admin\u0027"
+  },
+  {
+    "Id": "12fa318c-84c7-45a2-9b59-d13bdabc326a",
+    "Timestamp": "2026-07-24T05:30:40.3810391+04:00",
+    "Level": 0,
+    "Message": "User \u0027superadmin\u0027 logged out."
+  }
+]

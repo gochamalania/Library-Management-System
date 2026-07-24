@@ -48,13 +48,22 @@ public class JsonUserRepository : IUserRepository
 
             foreach (var dto in dtos)
             {
-                if (dto.UserRole == Role.Admin)
+                User? user = null;
+                
+                if(dto.UserRole == Role.Admin || dto.UserRole == Role.SuperAdmin)
                 {
-                    users.Add(new AdminUser(dto.Id, dto.Username, dto.Password));
+                    user = new AdminUser(dto.Id, dto.Username, dto.Password, dto.Email, dto.UserRole);
                 }
                 else if (dto.UserRole == Role.Client)
                 {
-                    users.Add(new ClientUser(dto.Id, dto.Username, dto.Password, dto.Fines));
+                    user = new ClientUser(dto.Id, dto.Username, dto.Password, dto.Email, dto.Fines);
+                }
+
+                if (user != null)
+                {
+                    user.IsEmailVerified = dto.IsEmailVerified;
+                    user.VerificationCode = dto.VerificationCode;
+                    users.Add(user);
                 }
             }
 
@@ -73,6 +82,13 @@ public class JsonUserRepository : IUserRepository
         
         string cleanUsername = username.Trim();
         return GetAllUsers().FirstOrDefault(u => u.Username.Equals(cleanUsername, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public User? GetUserByEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email)) return null;
+        string cleanEmail = email.Trim();
+        return GetAllUsers().FirstOrDefault(u => u.Email.Equals(cleanEmail, StringComparison.OrdinalIgnoreCase));
     }
 
     public void AddUser(User user)
@@ -109,7 +125,10 @@ public class JsonUserRepository : IUserRepository
                     Id = user.Id,
                     Username = user.Username,
                     Password = user.Password,
+                    Email = user.Email,
                     UserRole = user.UserRole,
+                    IsEmailVerified  = user.IsEmailVerified,
+                    VerificationCode = user.VerificationCode,
                     Fines = (user is ClientUser client) ? client.Fines : 0
                 };
                 dtos.Add(dto);
@@ -119,13 +138,28 @@ public class JsonUserRepository : IUserRepository
             File.WriteAllText(_filePath, json);
         }
     
+    public void DeleteUser(User user)
+    {
+        var users = GetAllUsers();
+        var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
+
+        if (existingUser != null)
+        {
+            users.RemoveAll(u => u.Id == user.Id);
+            SaveAll(users);
+        }
+    }
+    
     // Helper DTO class for working with JSON
     private class UserDto
     {
         public string Id { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         public Role UserRole  { get; set; }
+        public bool IsEmailVerified { get; set; }
+        public string? VerificationCode { get; set; }
         public decimal Fines { get; set; }
     }
 }
